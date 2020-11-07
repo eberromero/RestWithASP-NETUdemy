@@ -20,7 +20,7 @@ namespace RestWithASPNETUdemy.Controllers
         }
 
         [HttpGet("sum/{firstNumber}/{secondNumber}")]
-        public IActionResult Sum(string firstNumber, string secondNumber)
+        public IActionResult Soma(string firstNumber, string secondNumber)
         {
             if (IsNumeric(firstNumber) && IsNumeric(secondNumber)) 
             {
@@ -31,12 +31,56 @@ namespace RestWithASPNETUdemy.Controllers
         }
 
         [HttpGet("sub/{firstNumber}/{secondNumber}")]
-        public IActionResult Subtraction(string firstNumber, string secondNumber)
+        public IActionResult Subtracao(string firstNumber, string secondNumber)
         {
             if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
             {
                 var sub = ConvertToDecimal(firstNumber) - ConvertToDecimal(secondNumber);
                 return Ok(sub.ToString());
+            }
+            return BadRequest("Valores inválidos");
+        }
+
+        [HttpGet("mult/{firstNumber}/{secondNumber}")]
+        public IActionResult Multiplicacao(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                var mult = ConvertToDecimal(firstNumber) * ConvertToDecimal(secondNumber);
+                return Ok(mult.ToString());
+            }
+            return BadRequest("Valores inválidos");
+        }
+
+        [HttpGet("div/{firstNumber}/{secondNumber}")]
+        public IActionResult Divisao(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                var div = ConvertToDecimal(firstNumber) / ConvertToDecimal(secondNumber);
+                return Ok(div.ToString());
+            }
+            return BadRequest("Valores inválidos");
+        }
+
+        [HttpGet("med/{firstNumber}/{secondNumber}")]
+        public IActionResult Media(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                var med = (ConvertToDecimal(firstNumber) + ConvertToDecimal(secondNumber)) / 2;
+                return Ok(med.ToString());
+            }
+            return BadRequest("Valores inválidos");
+        }
+
+        [HttpGet("raiz/{firstNumber}")]
+        public IActionResult raiz(string firstNumber)
+        {
+            if (IsNumeric(firstNumber))
+            {
+                var raiz = Math.Sqrt((double)ConvertToDecimal(firstNumber));
+                return Ok(raiz.ToString());
             }
             return BadRequest("Valores inválidos");
         }
