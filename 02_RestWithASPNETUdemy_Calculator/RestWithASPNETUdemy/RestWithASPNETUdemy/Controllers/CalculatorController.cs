@@ -20,15 +20,23 @@ namespace RestWithASPNETUdemy.Controllers
         }
 
         [HttpGet("sum/{firstNumber}/{secondNumber}")]
-        public IActionResult Get(string firstNumber, string secondNumber)
+        public IActionResult Sum(string firstNumber, string secondNumber)
         {
             if (IsNumeric(firstNumber) && IsNumeric(secondNumber)) 
             {
                 var sum = ConvertToDecimal(firstNumber) + ConvertToDecimal(secondNumber);
                 return Ok(sum.ToString());
+            }
+            return BadRequest("Valores inválidos");
+        }
 
-                //var mult = ConvertToDecimal(firstNumber) * ConvertToDecimal(secondNumber);
-                //return Ok(mult.ToString());
+        [HttpGet("sub/{firstNumber}/{secondNumber}")]
+        public IActionResult Subtraction(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                var sub = ConvertToDecimal(firstNumber) - ConvertToDecimal(secondNumber);
+                return Ok(sub.ToString());
             }
             return BadRequest("Valores inválidos");
         }
